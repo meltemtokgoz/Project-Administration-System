@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block body %}
+
+    <div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="thumbnail">
+                <div class="caption">
+                    <h3>{{ issue.i_type }}</h3>
+                    <p>Type: {{ issue.i_id }}</p>
+                    <p>Extra Info: {{ issue.i_extra }}</p>
+                    <p>Content: {{ issue.i_content }}</p>
+                    <p>Project: {{ issue.pIssue }}</p>
+                    <p>Assign Employee 1: {{ issue.i_work }}</p>
+                    <p>Assign Employee 2: {{ issue.i_work2 }}</p>
+                    <p><a href="{{ issue.get_updateI_url }}" class="btn btn-default" role="button">Update</a>
+                        <a href="{{ issue.get_deleteI_url }}" class="btn btn-danger" role="button">Delete</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock %}

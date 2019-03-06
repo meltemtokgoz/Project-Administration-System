@@ -1,0 +1,72 @@
+<!-- Navbar Start -->
+{% load register %}
+<nav class="navbar navbar-inverse navbar-fixed-top" role="banner">
+    <div class="container">
+
+        <div class="navbar-header">
+
+            <!-- Telefon ekranları için menü butonu -->
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <!-- İsim Soyisim veya Marka İsmi -->
+            <a href="{% url 'home' %}" class="navbar-brand" style="color: white">Project Administration System</a>
+        </div>
+
+        <nav class="collapse navbar-collapse" role="navigation">
+
+            <!-- Arama Çubuğu -->
+            {% if request.user.is_authenticated %}
+                <form class="navbar-form navbar-left" role="search" method="GET" action="">
+                    <div class="input-group">
+                        <input class="form-control" type="text" name="q" placeholder="Search on system" value="" >
+                        <span class="input-group-btn">
+                            <input class="btn btn-default" type="submit" value="Search">
+                        </span>
+                    </div>
+                </form>
+            {% endif %}
+
+            <!-- Temel Sayfalar -->
+            <ul class="nav navbar-nav navbar-right">
+                {% if not request.user.is_authenticated %}
+                    <li><a href="{% url 'home' %}" style="color: white">Home</a></li>
+                    <li><a href="{% url 'account:login' %}" style="color: white">Sign In</a></li>
+                {% endif %}
+                {% if request.user.is_authenticated %}
+                     {% if request.user.is_superuser %}
+                        <li><a href="{% url 'app:homeA' %}" style="color: white">Home</a></li>
+                        <li><a href="{% url 'app:indexC' %}" style="color: white">User</a></li>
+                        <li><a href="{% url 'account:newuser' %}" style="color: white">Create User</a></li>
+                        <li><a href="{% url 'app:settings' %}" style="color: white">Settings</a></li>
+                        <li><a href="{% url 'account:logout' %}" style="color: white">Sign Out</a></li>
+                    {% else %}
+                        {% if request.user|is_group:"companys" %}
+                            <li><a href="{% url 'app:homeC' %}" style="color: white">Home</a></li>
+                            <li><a href="{% url 'app:indexD' %}" style="color: white">Department</a></li>
+                            <li><a href="{% url 'app:index' %}" style="color: white">Employee</a></li>
+                            <li><a href="{% url 'app:indexP' %}" style="color: white">Project</a></li>
+                            <li><a href="{% url 'app:indexW' %}" style="color: white">Workflow</a></li>
+                            <li><a href="{% url 'app:settings' %}" style="color: white">Settings</a></li>
+                            <li><a href="{% url 'account:logout' %}" style="color: white">Sign Out</a></li>
+                        {% endif %}
+                        {% if request.user|is_group:"customers" %}
+                            <li><a href="{% url 'app:homeCu' %}" style="color: white">Home</a></li>
+                            <li><a href="{% url 'app:companyuser2' %}" style="color: white">Company</a></li>
+                            <li><a href="{% url 'app:projectP' %}" style="color: white">Project</a></li>
+                            <li><a href="{% url 'app:settings' %}" style="color: white">Settings</a></li>
+                            <li><a href="{% url 'account:logout' %}" style="color: white">Sign Out</a></li>
+                        {% endif %}
+                    {% endif %}
+                {% endif %}
+                <!-- <li><a href="#">Customer</a></li> --->
+            </ul>
+
+        </nav>
+
+    </div>
+</nav>

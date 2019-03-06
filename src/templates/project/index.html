@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <div class="container">
+        <p> <a href="{% url 'app:createP' %}" class="btn btn-primary" role="button">New Project Add</a>
+            <a href="{% url 'app:indexI' %}" class="btn btn-primary" role="button">Issues of Projects</a>
+            <a href="{% url 'app:indexPlan' %}" class="btn btn-primary" role="button">Projects Plan</a>
+        </p>
+    {% for project in projects %}
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="thumbnail">
+                    <div class="caption">
+                        <h3>{{ project.p_title }}</h3>
+                        <p>Company: {{ project.cProject }}</p>
+                        <p><a href="{{ project.get_project_url }}" class="btn btn-primary" role="button">Research</a>
+                            <a href="{{ project.get_updateP_url }}" class="btn btn-default" role="button">Update</a>
+                            <a href="{{ project.get_deleteP_url }}" class="btn btn-danger" role="button">Delete</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+     <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="pagination">
+                <span class="step-links">
+                    {% if projects.has_previous %}
+                        <a href="?page={{ projects.previous_page_number }}">previous</a>
+                    {% endif %}
+                    <span class="current">
+                        Page {{ projects.number }} of {{ projects.paginator.num_pages }}.
+                    </span>
+
+                    {% if projects.has_next %}
+                        <a href="?page={{ projects.next_page_number }}">next</a>
+                    {% endif %}
+                </span>
+            </div>
+        </div>
+    </div>
+    </div>
+
+{% endblock %}

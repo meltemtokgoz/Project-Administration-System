@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block body %}
+
+    <div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="thumbnail">
+                <div class="caption">
+                    <h3>{{ department.d_name }}</h3>
+                    <p>ID: {{ department.d_id }}</p>
+                    <p>Capacity: {{ department.d_capacity }}</p>
+                    <p>Phone: {{ department.d_phone }}</p>
+                    <p>Company: {{ department.dCompany }}</p>
+                    <p><a href="{{ department.get_updateD_url }}" class="btn btn-default" role="button">Update</a>
+                        <a href="{{ department.get_deleteD_url }}" class="btn btn-danger" role="button">Delete</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock %}

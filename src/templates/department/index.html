@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <div class="container">
+        <p><a href="{% url 'app:createD' %}" class="btn btn-primary" role="button">New Department Add</a></p>
+    {% for department in departments %}
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="thumbnail">
+                    <div class="caption">
+                        <h3>{{ department.d_name }}</h3>
+                        <p>Company: {{ department.dCompany }}</p>
+                        <p><a href="{{ department.get_department_url }}" class="btn btn-primary" role="button">Research</a>
+                            <a href="{{ department.get_updateD_url }}" class="btn btn-default" role="button">Update</a>
+                            <a href="{{ department.get_deleteD_url }}" class="btn btn-danger" role="button">Delete</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+     <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="pagination">
+                <span class="step-links">
+                    {% if departments.has_previous %}
+                        <a href="?page={{ departments.previous_page_number }}">previous</a>
+                    {% endif %}
+                    <span class="current">
+                        Page {{ departments.number }} of {{ departments.paginator.num_pages }}.
+                    </span>
+
+                    {% if departments.has_next %}
+                        <a href="?page={{ departments.next_page_number }}">next</a>
+                    {% endif %}
+                </span>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock %}

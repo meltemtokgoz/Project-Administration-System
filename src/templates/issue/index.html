@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <div class="container">
+        <p><a href="{% url 'app:createI' %}" class="btn btn-primary" role="button">New Issue Add</a>
+            <a href="{% url 'app:indexSub' %}" class="btn btn-primary" role="button">Subtasks of Issues</a>
+        </p>
+    {% for issue in issues %}
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="thumbnail">
+                    <div class="caption">
+                        <h3>{{ issue.i_type }}</h3>
+                        <p>Project: {{ issue.pIssue }}</p>
+                        <p><a href="{{ issue.get_issue_url }}" class="btn btn-primary" role="button">Research</a>
+                            <a href="{{ issue.get_updateI_url }}" class="btn btn-default" role="button">Update</a>
+                            <a href="{{ issue.get_deleteI_url }}" class="btn btn-danger" role="button">Delete</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+     <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="pagination">
+                <span class="step-links">
+                    {% if issues.has_previous %}
+                        <a href="?page={{ issues.previous_page_number }}">previous</a>
+                    {% endif %}
+                    <span class="current">
+                        Page {{ issues.number }} of {{ issues.paginator.num_pages }}.
+                    </span>
+
+                    {% if issues.has_next %}
+                        <a href="?page={{ issues.next_page_number }}">next</a>
+                    {% endif %}
+                </span>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock %}

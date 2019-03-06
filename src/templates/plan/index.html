@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <div class="container">
+        <p><a href="{% url 'app:createPlan' %}" class="btn btn-primary" role="button">New Project Plan Add</a></p>
+    {% for plan in plans %}
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="thumbnail">
+                    <div class="caption">
+                        <h3>{{ plan.plan_id }}</h3>
+                        <p>Type: {{ plan.plan_type }}</p>
+                        <p><a href="{{ plan.get_plan_url }}" class="btn btn-primary" role="button">Research</a>
+                            <a href="{{ plan.get_updatePlan_url }}" class="btn btn-default" role="button">Update</a>
+                            <a href="{{ plan.get_deletePlan_url }}" class="btn btn-danger" role="button">Delete</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+     <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="pagination">
+                <span class="step-links">
+                    {% if plans.has_previous %}
+                        <a href="?page={{ plan.previous_page_number }}">previous</a>
+                    {% endif %}
+                    <span class="current">
+                        Page {{ plans.number }} of {{ plans.paginator.num_pages }}.
+                    </span>
+
+                    {% if plans.has_next %}
+                        <a href="?page={{ plans.next_page_number }}">next</a>
+                    {% endif %}
+                </span>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock %}

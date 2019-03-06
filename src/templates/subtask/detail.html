@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block body %}
+
+    <div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="thumbnail">
+                <div class="caption">
+                    <h3>{{ subtask.sub_id }}</h3>
+                    <p>Content: {{ subtask.sub_content }}</p>
+                    <p>Project: {{ subtask.iIssue}}</p>
+                    <p>Assign Employee: {{ subtask.s_work}}</p>
+                    <p><a href="{{ subtask.get_updateSub_url }}" class="btn btn-default" role="button">Update</a>
+                        <a href="{{ subtask.get_deleteSub_url }}" class="btn btn-danger" role="button">Delete</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock %}

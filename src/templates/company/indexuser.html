@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <div class="container">
+
+    {% for company in companys %}
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="thumbnail">
+                    <div class="caption">
+                        <h3>{{ company.c_name }}</h3>
+                        <p><a href="{{ company.get_company_url }}" class="btn btn-primary" role="button">Research</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+     <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="pagination">
+                <span class="step-links">
+                    {% if companys.has_previous %}
+                        <a href="?page={{ companys.previous_page_number }}">previous</a>
+                    {% endif %}
+                    <span class="current">
+                        Page {{ companys.number }} of {{ companys.paginator.num_pages }}.
+                    </span>
+
+                    {% if companys.has_next %}
+                        <a href="?page={{ companys.next_page_number }}">next</a>
+                    {% endif %}
+                </span>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock %}

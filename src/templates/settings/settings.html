@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}HomePage - {{ block.super }}{% endblock %}
+
+{% block body %}
+      <div class="container-fluid">
+            <div class="row" style="margin-botto: 30px; margin-top: 70px;">
+            </div>
+            <a href="{% url 'account:Change Password' %}" class="btn btn-primary" role="button">Change Password</a>
+      </div>
+
+{% endblock %}

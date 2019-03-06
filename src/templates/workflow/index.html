@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <div class="container">
+        <p><a href="{% url 'app:createW' %}" class="btn btn-primary" role="button">New Workflow Add</a></p>
+    {% for workflow in workflows %}
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="thumbnail">
+                    <div class="caption">
+                        <h3>{{ workflow.w_id }}</h3>
+                        <p>Type: {{ workflow.w_type }}</p>
+                        <p><a href="{{ workflow.get_workflow_url }}" class="btn btn-primary" role="button">Research</a>
+                            <a href="{{ workflow.get_updateW_url }}" class="btn btn-default" role="button">Update</a>
+                            <a href="{{ workflow.get_deleteW_url }}" class="btn btn-danger" role="button">Delete</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+     <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="pagination">
+                <span class="step-links">
+                    {% if workflows.has_previous %}
+                        <a href="?page={{ workflow.previous_page_number }}">previous</a>
+                    {% endif %}
+                    <span class="current">
+                        Page {{ workflows.number }} of {{ workflows.paginator.num_pages }}.
+                    </span>
+
+                    {% if workflows.has_next %}
+                        <a href="?page={{ workflows.next_page_number }}">next</a>
+                    {% endif %}
+                </span>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock %}

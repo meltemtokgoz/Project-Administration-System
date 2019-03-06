@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}HomePage - {{ block.super }}{% endblock %}
+
+{% block body %}
+      <div class="container-fluid">
+            <div class="row" style="="margin-botto: 30px;>
+                  <div class="alert alert-success alert-dismissible" role="alert" style="margin-top: 70px;">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        Welcome to customer page, {{ request.user.username}}<br>
+                        Last Log In Date = {{ request.user.last_login }}<br>
+                        Is user super user = {{ request.user.is_superuser }}<br>
+                        Is user active = {{ request.user.is_active }}<br>
+                  </div>
+            </div>
+      </div>
+
+{% endblock %}

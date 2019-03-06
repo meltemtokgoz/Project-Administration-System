@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block body %}
+
+    <div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="thumbnail">
+                <div class="caption">
+                    <h3>{{ workflow.w_id }}</h3>
+                    <p>Type: {{ workflow.w_type }}</p>
+                    <p>Date: {{ workflow.w_date}}</p>
+                    <p>Content: {{ workflow.w_content}}</p>
+                    <p><a href="{{ workflow.get_updateW_url }}" class="btn btn-default" role="button">Update</a>
+                        <a href="{{ workflow.get_deleteW_url }}" class="btn btn-danger" role="button">Delete</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock %}
